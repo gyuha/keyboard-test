@@ -22,6 +22,11 @@ tasks:
     cmds:
       - bash scripts/build-app.sh
 
+  dmg:
+    desc: build/KeyTest.dmg 배포 이미지 생성
+    cmds:
+      - bash scripts/build-dmg.sh
+
   run:
     desc: 앱 번들을 만들고 실행
     deps: [app]
