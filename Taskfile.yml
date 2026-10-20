@@ -1,0 +1,47 @@
+version: '3'
+
+tasks:
+  default:
+    desc: 사용 가능한 태스크 목록
+    cmds:
+      - task --list
+    silent: true
+
+  build:
+    desc: 디버그 빌드
+    cmds:
+      - swift build
+
+  test:
+    desc: 체크 러너 전체 실행 (Layout · KeyState · EventTap · Sound)
+    cmds:
+      - swift run keytest-checks
+
+  app:
+    desc: build/KeyTest.app 번들 생성 (ad-hoc 서명)
+    cmds:
+      - bash scripts/build-app.sh
+
+  run:
+    desc: 앱 번들을 만들고 실행
+    deps: [app]
+    cmds:
+      - open build/KeyTest.app
+
+  dev:
+    desc: 번들 없이 디버그 바이너리로 바로 실행 (터미널 권한을 상속)
+    deps: [build]
+    cmds:
+      - .build/debug/KeyTest
+
+  snapshot:
+    desc: 화면을 PNG로 렌더링 (기본 build/snapshot.png, 경로 지정은 task snapshot -- out.png)
+    deps: [build]
+    cmds:
+      - mkdir -p build
+      - .build/debug/KeyTest --snapshot {{if .CLI_ARGS}}{{.CLI_ARGS}}{{else}}build/snapshot.png{{end}}
+
+  clean:
+    desc: 빌드 산출물 삭제 (.build, build)
+    cmds:
+      - rm -rf .build build
