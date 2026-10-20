@@ -27,6 +27,16 @@ tasks:
     cmds:
       - bash scripts/build-dmg.sh
 
+  release:
+    desc: 배포 (DMG 빌드 → GitHub 릴리스 공개 → tap 갱신). task release -- 0.2.0
+    cmds:
+      - bash scripts/release.sh {{.CLI_ARGS}}
+
+  tap:
+    desc: 공개된 릴리스를 homebrew-tap에 다시 반영. task tap -- 0.2.0
+    cmds:
+      - bash scripts/update-tap.sh {{.CLI_ARGS}}
+
   run:
     desc: 앱 번들을 만들고 실행
     deps: [app]

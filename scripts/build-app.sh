@@ -30,6 +30,11 @@ cat > "$APP/Contents/Info.plist" <<'PLIST'
 </plist>
 PLIST
 
+# 배포 버전은 VERSION 환경 변수로 받는다 (scripts/release.sh가 넘긴다)
+VERSION="${VERSION:-0.1.0}"
+plutil -replace CFBundleShortVersionString -string "$VERSION" "$APP/Contents/Info.plist"
+plutil -replace CFBundleVersion -string "$VERSION" "$APP/Contents/Info.plist"
+
 codesign --force --sign - "$APP"
 codesign --verify "$APP"
 echo "built $APP"
