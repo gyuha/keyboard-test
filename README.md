@@ -6,6 +6,16 @@
 
 > 이 이미지는 앱의 `--snapshot` 모드로 렌더링한 화면입니다. 눌린 키 표시를 보여 주려고 Esc · Enter · N.Ent(눌렀던 키)와 Left Shift · LWin(누르는 중)을 예시로 켰습니다.
 
+## 빠른 설치
+
+Apple Silicon Mac에서 Homebrew로 설치합니다.
+
+```sh
+brew install --cask gyuha/tap/keytest
+```
+
+설치 후 권한 허용이 필요하고, 자세한 내용과 직접 내려받는 방법은 [설치](#설치)를 보세요.
+
 ## 기능
 
 - **키 표시:** 108키 배치에서 누르는 중인 키는 보라색, 한 번 눌렀던 키는 연한 살구색으로 켜집니다. `초기화` 버튼으로 모두 지웁니다.
@@ -40,9 +50,26 @@ Apple Silicon Mac에서 [자체 Homebrew tap](https://github.com/gyuha/homebrew-
 brew install --cask gyuha/tap/keytest
 ```
 
+tap을 먼저 등록해 두고 짧은 이름으로 설치해도 됩니다.
+
+```sh
+brew tap gyuha/tap
+brew install --cask keytest
+```
+
+설치하면 `/Applications/KeyTest.app`이 생깁니다. 아래 [권한](#권한)을 허용한 뒤 앱을 실행하세요.
+
 - 서명·공증을 하지 않은 앱이라, Homebrew로 설치하면 설치 직후 이 앱에 한해 macOS의 격리 표시(`com.apple.quarantine`)를 지워 경고 없이 열립니다. 이 검사를 우회하는 것이므로 출처를 신뢰하는 경우에만 설치하세요.
-- Apple Silicon(arm64)과 macOS 13 이상만 지원합니다.
-- 앱 안 업데이트가 없으므로 `brew upgrade --cask keytest`로 갱신합니다.
+- Apple Silicon(arm64)과 macOS 13 이상만 지원합니다. Intel Mac이나 macOS 13 미만에서는 Homebrew가 설치를 거부합니다.
+
+업데이트와 제거는 이렇게 합니다. 앱 안에 업데이트 기능이 없으므로 새 버전은 Homebrew로 받습니다.
+
+```sh
+brew update && brew upgrade --cask keytest   # 업데이트
+brew uninstall --cask keytest                # 제거
+```
+
+업데이트로 앱이 바뀌면 아래 [권한](#권한) 허용을 다시 해야 할 수 있습니다.
 
 ### 직접 내려받기
 
